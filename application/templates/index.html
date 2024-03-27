@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site Web</title>
+    <script type="module" src="{{url_for('static', filename='scripts/fetch.js')}}"></script>
+    <script type="module" src="{{url_for('static', filename='scripts/affiche.js')}}"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Questiut'o</h1>
+    </header>
+
+    <main>
+        <h2>Les quizzs</h2>
+        <section id="quiz">
+
+        </section>
+        <h2>Ajouter un quizz</h2>
+        <form id="form">
+            <input type="text" id="quiz_name" placeholder="Nom du quiz">
+            <button id="add_quiz">Ajouter</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Questiut'o. Tous droits réservés.</p>
+    </footer>
+</body>
+
+</html>
