@@ -1,29 +1,54 @@
-# questionnaire
+# Questionnaire VUE 
 
-This template should help get you started developing with Vue 3 in Vite.
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Description du projet
 
-## Customize configuration
+Ce projet est un questionnaire avec une partie client réalisée avec Vue.js.
+La partie serveur est lancée avec flask et a été réalisée en python.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Membres du projet
 
-## Project Setup
+[![Yannis BARACHE](https://img.shields.io/badge/Yannis%20Barache-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Yannis-barache)
+[![Khalil ABADA](https://img.shields.io/badge/Khalil%20Abada-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Khalil-45)
 
-```sh
+## Installation
+
+Pour commencer, clonez le dépôt sur votre machine locale 
+
+```bash
+git clone https://github.com/Yannis-barache/QuestionnaireVue
+``` 
+
+Puis installez les dépendances.
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Lancement 
 
-```sh
+### Lancement de la partie client
+Pour lancer le serveur, exécutez la commande suivante : 
+
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Lancement de la partie serveur
 
-```sh
-npm run build
+Un script `setup.sh` est disponible pour installer les dépendances du serveur.
+
+```bash
+./setup.sh
 ```
+
+Une fois fait vous devez vous placer dans l'environnement virtuel créé et lancer le serveur avec les commandes suivantes : 
+
+```bash
+source venv/bin/activate
+flask run
+```
+
