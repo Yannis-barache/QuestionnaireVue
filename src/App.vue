@@ -1,23 +1,22 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import Questionnaire from "@/components/Index.vue";
-</script>
-
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="Hello Vue 3 + Vite" />
-      <Questionnaire />
+      <router-view />
     </div>
   </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
+
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+onMounted(() => {
+  const router = useRouter()
+  router.push('/') // Redirige vers la page d'accueil au chargement de l'application
+})
+</script>
 
 <style scoped>
 header {
