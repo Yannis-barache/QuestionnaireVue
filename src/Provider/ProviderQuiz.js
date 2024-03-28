@@ -11,15 +11,15 @@ class ProviderQuiz {
     }
 
     static async getQuizbyId(id) {
-        return fetch(`http://127.0.0.1:5000/quiz/api/v1.0/quiz`)
-            .then(response => response.json())
-            .then(data => {
-                return data;
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
-    }
+        return fetch(`http://127.0.0.1:5000/quiz/api/v1.0/quiz/${id}`)
+          .then(response => response.json())
+          .then(data => {
+            return data;
+          })
+          .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+          });
+      }
 
     static async deleteQuiz(id) {
 
