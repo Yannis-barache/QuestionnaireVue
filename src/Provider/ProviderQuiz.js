@@ -23,7 +23,7 @@ class ProviderQuiz {
 
     static async deleteQuiz(id) {
 
-        return fetch(`/quiz/api/v1.0/quiz/${id}`, { method: "DELETE" })
+        return fetch(`http://127.0.0.1:5000/quiz/api/v1.0/quiz/${id}`, { method: "DELETE" })
         .then(response => response.json())
         .then(data => {
             console.log(data)
@@ -34,7 +34,7 @@ class ProviderQuiz {
     }
 
     static async updateQuiz(id, newName) {
-        return fetch(`/quiz/api/v1.0/quiz/${id}`,
+        return fetch(`http://127.0.0.1:5000/quiz/api/v1.0/quiz/${id}`,
             {
                 "method": "PUT",
                 "headers": {
@@ -52,9 +52,22 @@ class ProviderQuiz {
 
     }
 
-
-
-
+    static async createQuiz(name) {
+        return fetch('http://127.0.0.1:5000/quiz/api/v1.0/quiz', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({name: name}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 }
 
 export default ProviderQuiz;
