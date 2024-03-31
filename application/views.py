@@ -52,7 +52,8 @@ def create_quiz():
 
 @app.route('/quiz/api/v1.0/question', methods=["POST"])
 def create_question():
-    json = request.json
+    json = request.get_json()
+    print(json)
     return jsonify(
         db_create_question(json).to_json()
     )

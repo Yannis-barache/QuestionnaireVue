@@ -10,26 +10,35 @@ const newQuestionTitle = ref('') // Pour créer une nouvelle question
 onMounted(async () => {
   const id = route.params.id
   questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(id)
-  console.log(questions.value)
 })
 
-const createQuestion = async () => {
-  const id = route.params.id
-  await ProviderQuestion.createQuestion(id, newQuestionTitle.value)
-  questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(id) // Refresh the list
-}
-
 const deleteQuestion = async (questionId) => {
-  const id = route.params.id
-  await ProviderQuestion.deleteQuestion(id, questionId)
-  questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(id) // Refresh the list
+  await ProviderQuestion.deleteQuestion(questionId)
+  questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
 }
 
 const updateQuestion = async (questionId, newTitle) => {
-  const id = route.params.id
-  await ProviderQuestion.updateQuestion(id, questionId, newTitle)
-  questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(id) // Refresh the list
+  if (newTitle) {
+    await ProviderQuestion.updateQuestion(questionId, newTitle)
+    questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
+  }
 }
+
+const createQuestion = async () => {
+  if (newQuestionTitle.value) {
+    await ProviderQuestion.createQuestion(route.params.id, newQuestionTitle.value)
+    questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
+    newQuestionTitle.value = '' // Reset the input field
+  }
+}
+
+defineExpose({
+  questions,
+  newQuestionTitle,
+  deleteQuestion,
+  updateQuestion,
+  createQuestion
+})
 </script>
 
 <template>
