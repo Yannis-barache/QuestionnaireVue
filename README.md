@@ -30,13 +30,6 @@ npm install
 
 ## Lancement 
 
-### Lancement de la partie client
-Pour lancer le serveur, exécutez la commande suivante : 
-
-```bash
-npm run dev
-```
-
 ### Lancement de la partie serveur
 
 Un script `setup.sh` est disponible pour installer les dépendances du serveur.
@@ -51,4 +44,13 @@ Une fois fait vous devez vous placer dans l'environnement virtuel créé et lanc
 source venv/bin/activate
 flask run
 ```
+
+### Lancement de la partie client
+Pour lancer le client Vue, exécutez la commande suivante : 
+
+```bash
+npm run dev
+```
+Le terminal vous donnera le lien pour accéder à l'application.
+
 
