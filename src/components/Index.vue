@@ -44,7 +44,7 @@ defineExpose({
     <h1 class="text-center my-4">Questionnaires</h1>
     <div class="row">
       <div class="col-md-6" v-for="questionnaire in questionnaires" :key="questionnaire.quiz_id">
-        <Quest :questionnaire="questionnaire" :questionnaires="questionnaires" />
+        <Quest :questionnaire="questionnaire" :questionnaires="questionnaires" :delete-quiz="deleteQuiz" />
       </div>
     </div>
     <div class="mt-4">

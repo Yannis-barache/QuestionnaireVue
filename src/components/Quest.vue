@@ -4,7 +4,8 @@ import {ref} from "vue";
 
 defineProps({
   questionnaire: Object,
-  questionnaires: Array
+  questionnaires: Array,
+  deleteQuiz: Function,
 })
 
 const questionnaires =  ref([])
@@ -16,10 +17,6 @@ const selectQuiz = (quiz) => {
   selectedQuiz.value = quiz
 }
 
-const deleteQuiz = async (quizId) => {
-  await ProviderQuiz.deleteQuiz(quizId)
-  questionnaires.value = await ProviderQuiz.getAllQuiz() // Refresh the list
-}
 
 const updateQuiz = async (quiz) => {
   if (quiz.newName) {
@@ -32,7 +29,6 @@ const updateQuiz = async (quiz) => {
 
 defineExpose({
   selectQuiz,
-  deleteQuiz,
   updateQuiz,
 
 })
