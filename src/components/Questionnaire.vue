@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import ProviderQuestion from '../Provider/ProviderQuestion.js'
+import Question from "@/components/Question.vue";
 
 const route = useRoute()
 const questions = ref(null)
@@ -51,10 +52,7 @@ defineExpose({
       <h2 class="mb-3">Questions</h2>
       <div class="list-group">
         <div v-for="question in questions" :key="question.id" class="list-group-item">
-          <p class="mb-0">{{ question.title }}</p>
-          <input v-model="question.newName" type="text" class="form-control" placeholder="Nouveau nom pour la question">
-          <button class="btn btn-danger" @click="deleteQuestion(question.id)">Delete</button>
-          <button class="btn btn-primary" @click="updateQuestion(question)">Update</button>
+          <Question :question="question" :delete-question="deleteQuestion" :update-question="updateQuestion" />
         </div>
       </div>
     </div>
