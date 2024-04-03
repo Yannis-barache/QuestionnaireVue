@@ -17,16 +17,18 @@ const deleteQuestion = async (questionId) => {
   questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
 }
 
-const updateQuestion = async (questionId, newTitle) => {
+const updateQuestion = async (question) => {
+  const newTitle = question.newName
   if (newTitle) {
-    await ProviderQuestion.updateQuestion(questionId, newTitle)
+    await ProviderQuestion.updateQuestion(question.id, newTitle)
     questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
   }
 }
 
 const createQuestion = async () => {
+
   if (newQuestionTitle.value) {
-    await ProviderQuestion.createQuestion(route.params.id, newQuestionTitle.value)
+    await ProviderQuestion.createQuestion(newQuestionTitle.value, route.params.id)
     questions.value = await ProviderQuestion.getAllQuestionsQuestionnaire(route.params.id) // Refresh the list
     newQuestionTitle.value = '' // Reset the input field
   }
@@ -50,8 +52,9 @@ defineExpose({
       <div class="list-group">
         <div v-for="question in questions" :key="question.id" class="list-group-item">
           <p class="mb-0">{{ question.title }}</p>
+          <input v-model="question.newName" type="text" class="form-control" placeholder="Nouveau nom pour la question">
           <button class="btn btn-danger" @click="deleteQuestion(question.id)">Delete</button>
-          <button class="btn btn-primary" @click="updateQuestion(question.id, 'New title')">Update</button> <!-- Replace 'New title' with the new title -->
+          <button class="btn btn-primary" @click="updateQuestion(question)">Update</button>
         </div>
       </div>
     </div>

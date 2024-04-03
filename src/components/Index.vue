@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import ProviderQuiz from '../Provider/ProviderQuiz.js'
+import Questionnaire from "@/components/Questionnaire.vue";
+import Quest from "@/components/Quest.vue";
 
 const questionnaires = ref([])
 const selectedQuiz = ref(null)
@@ -10,21 +12,9 @@ onMounted(async () => {
   questionnaires.value = await ProviderQuiz.getAllQuiz()
 })
 
+
 const selectQuiz = (quiz) => {
   selectedQuiz.value = quiz
-}
-
-const deleteQuiz = async (quizId) => {
-  await ProviderQuiz.deleteQuiz(quizId)
-  questionnaires.value = await ProviderQuiz.getAllQuiz() // Refresh the list
-}
-
-const updateQuiz = async (quiz) => {
-  if (quiz.newName) {
-    await ProviderQuiz.updateQuiz(quiz.quiz_id, quiz.newName)
-    questionnaires.value = await ProviderQuiz.getAllQuiz() // Refresh the list
-    quiz.newName = '' // Reset the input field
-  }
 }
 
 const createQuiz = async () => {
@@ -34,6 +24,10 @@ const createQuiz = async () => {
     newQuizName.value = '' // Reset the input field
   }
 }
+const deleteQuiz = async (quizId) => {
+  await ProviderQuiz.deleteQuiz(quizId)
+  questionnaires.value = await ProviderQuiz.getAllQuiz() // Refresh the list
+}
 
 defineExpose({
   questionnaires,
@@ -41,7 +35,6 @@ defineExpose({
   selectQuiz,
   newQuizName,
   deleteQuiz,
-  updateQuiz,
   createQuiz
 })
 </script>
@@ -51,20 +44,7 @@ defineExpose({
     <h1 class="text-center my-4">Questionnaires</h1>
     <div class="row">
       <div class="col-md-6" v-for="questionnaire in questionnaires" :key="questionnaire.quiz_id">
-        <div class="card mb-4" @click="selectQuiz(questionnaire)">
-          <div class="card-header">
-            {{ questionnaire.name }}
-            <input v-model="questionnaire.newName" type="text" class="form-control" placeholder="New quiz name">
-            <button class="btn btn-danger" @click.stop="deleteQuiz(questionnaire.quiz_id)">Delete</button>
-            <button class="btn btn-primary" @click.stop="updateQuiz(questionnaire)">Update</button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Quiz Details</h5>
-            <router-link :to="`/questionnaire/${questionnaire.quiz_id}`">
-              <p class="card-text">Click to view more details about this quiz.</p>
-            </router-link>
-          </div>
-        </div>
+        <Quest :questionnaire="questionnaire" :questionnaires="questionnaires" />
       </div>
     </div>
     <div class="mt-4">
